@@ -10,13 +10,13 @@ import (
 	"syscall"
 )
 
-type PcomScript struct {
-	Name   string `json:"name"`
-	Script string `json:"script"`
+type PcomCommand struct {
+	Name    string `json:"name"`
+	Command string `json:"command"`
 }
 
 type PcomConfig struct {
-	Scripts []PcomScript `json:"scripts"`
+	Commands []PcomCommand `json:"commands"`
 }
 
 type RunCommand struct{}
@@ -34,9 +34,9 @@ func (obj *RunCommand) Execute(params []string) {
 		return
 	}
 
-	for i := 0; len(payload.Scripts) > i; i++ {
-		if payload.Scripts[i].Name == params[0] {
-			scriptArray := strings.Split(payload.Scripts[i].Script, " ")
+	for i := 0; len(payload.Commands) > i; i++ {
+		if payload.Commands[i].Name == params[0] {
+			scriptArray := strings.Split(payload.Commands[i].Command, " ")
 			cmd := exec.Command(scriptArray[0], scriptArray[1:]...)
 			cmd.SysProcAttr = &syscall.SysProcAttr{Setsid: true}
 			cmd.Stdout = os.Stdout
