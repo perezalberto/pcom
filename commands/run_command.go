@@ -25,12 +25,14 @@ func (obj *RunCommand) Execute(params []string) {
 
 	content, err := ioutil.ReadFile("./pcom.config.json")
 	if err != nil {
+		fmt.Println("Command not found!!")
 		return
 	}
 
 	var payload PcomConfig
 	err = json.Unmarshal(content, &payload)
 	if err != nil {
+		fmt.Println("Command not found!!")
 		return
 	}
 
