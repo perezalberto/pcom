@@ -9,5 +9,12 @@ pcom run [command] #run a command
 # pcom.config.json file struct
 
 ```json
-
+{
+    "commands": [
+        {
+            "name": "COMMAND_NAME",
+            "command": ""
+        }
+    ]
+}
 ```
